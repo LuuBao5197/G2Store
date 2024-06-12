@@ -22,7 +22,7 @@ public class ConnectDB {
     public Connection getConnect() {
         String url = "jdbc:sqlserver://localhost:1433;databaseName=G2Store;encrypt=true;trustServerCertificate=true;";
         String username = "sa";
-        String pass = "28032000";
+        String pass = "123";
 
         try {
             // load driver
