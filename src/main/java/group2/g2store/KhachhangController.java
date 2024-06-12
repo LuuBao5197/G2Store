@@ -33,17 +33,17 @@ public class KhachhangController implements Initializable {
     @FXML
     private Button btnHome;
     @FXML
-    private TableColumn<?, ?> colCustomerId;
+    private TableColumn<Customer, String> colCustomerId;
     @FXML
-    private TableColumn<?, ?> colCustomerName;
+    private TableColumn<Customer, String> colCustomerName;
     @FXML
-    private TableColumn<?, ?> colCustomerPhone;
+    private TableColumn<Customer, Float> colCustomerPhone;
     @FXML
-    private TableColumn<?, ?> colCustomerDob;
+    private TableColumn<Customer, Float> colCustomerDob;
     @FXML
-    private TableColumn<?, ?> colCustomerPoint;
+    private TableColumn<Customer, Float> colCustomerPoint;
     @FXML
-    private TableView<?> tvCustomer;
+    private TableView<Customer> tvCustomer;
 
     /**
      * Initializes the controller class.
@@ -111,7 +111,7 @@ public class KhachhangController implements Initializable {
         colCustomerDob.setCellValueFactory(new PropertyValueFactory<>("image"));
         colCustomerPoint.setCellValueFactory(new PropertyValueFactory<>("image"));
         
-        //tvCustomer.setItems(cList);
+        tvCustomer.setItems(cList);
     }
     
    
