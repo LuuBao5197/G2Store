@@ -9,13 +9,13 @@ package group2.g2store;
  * @author VICTUS
  */
 public class Suppiler {
-    private String SuppilerCode, SuppilerName, email;
-    private float address, phoneNumber;
+    private Integer SuppilerCode;
+    private String  SuppilerName, email, address, phoneNumber;
 
     public Suppiler() {
     }
 
-    public Suppiler(String SuppilerCode, String SuppilerName, String email, float address, float phoneNumber) {
+    public Suppiler(Integer SuppilerCode, String SuppilerName, String email, String address, String phoneNumber) {
         this.SuppilerCode = SuppilerCode;
         this.SuppilerName = SuppilerName;
         this.email = email;
@@ -23,7 +23,7 @@ public class Suppiler {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getSuppilerCode() {
+    public Integer getSuppilerCode() {
         return SuppilerCode;
     }
 
@@ -35,15 +35,15 @@ public class Suppiler {
         return email;
     }
 
-    public float getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public float getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setSuppilerCode(String SuppilerCode) {
+    public void setSuppilerCode(Integer SuppilerCode) {
         this.SuppilerCode = SuppilerCode;
     }
 
@@ -55,11 +55,11 @@ public class Suppiler {
         this.email = email;
     }
 
-    public void setAddress(float address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setPhoneNumber(float phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -67,6 +67,7 @@ public class Suppiler {
     public String toString() {
         return "Suppiler{" + "SuppilerCode=" + SuppilerCode + ", SuppilerName=" + SuppilerName + ", email=" + email + ", address=" + address + ", phoneNumber=" + phoneNumber + '}';
     }
+
     
     
 }
