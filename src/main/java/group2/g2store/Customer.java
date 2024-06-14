@@ -9,13 +9,13 @@ package group2.g2store;
  * @author VICTUS
  */
 public class Customer {
-    private String customerId, customerName;
-    private float customerPhone, Dob, Point;
+    private String customerId, customerName, customerPhone, Dob;
+    private int  Point;
 
     public Customer() {
     }
 
-    public Customer(String customerId, String customerName, float customerPhone, float Dob, float Point) {
+    public Customer(String customerId, String customerName, String customerPhone, String Dob, int Point) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerPhone = customerPhone;
@@ -31,15 +31,15 @@ public class Customer {
         return customerName;
     }
 
-    public float getCustomerPhone() {
+    public String getCustomerPhone() {
         return customerPhone;
     }
 
-    public float getDob() {
+    public String getDob() {
         return Dob;
     }
 
-    public float getPoint() {
+    public int getPoint() {
         return Point;
     }
 
@@ -51,15 +51,15 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public void setCustomerPhone(float customerPhone) {
+    public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
     }
 
-    public void setDob(float Dob) {
+    public void setDob(String Dob) {
         this.Dob = Dob;
     }
 
-    public void setPoint(float Point) {
+    public void setPoint(int Point) {
         this.Point = Point;
     }
 
@@ -67,6 +67,6 @@ public class Customer {
     public String toString() {
         return "Customer{" + "customerId=" + customerId + ", customerName=" + customerName + ", customerPhone=" + customerPhone + ", Dob=" + Dob + ", Point=" + Point + '}';
     }
-    
+
     
 }
