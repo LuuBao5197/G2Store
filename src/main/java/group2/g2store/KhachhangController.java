@@ -55,7 +55,7 @@ public class KhachhangController implements Initializable {
         // TODO
         con = new ConnectDB();
          cn = con.getConnect();
-         showProducts();
+         showCustomers();
     }    
 
     @FXML
@@ -104,7 +104,7 @@ public class KhachhangController implements Initializable {
         return list;
     }
 
-    public void showProducts()
+    public void showCustomers()
     {
         ObservableList<Customer> cList = getCustomers();
         
@@ -130,7 +130,7 @@ public class KhachhangController implements Initializable {
             st.executeUpdate(query);
             
             //load du lieu
-            showProducts();
+            showCustomers();
         } catch (SQLException ex) {
             System.out.println("loi: " + ex.getMessage());
         }
