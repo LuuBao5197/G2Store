@@ -37,13 +37,15 @@ public class KhachhangController implements Initializable {
     @FXML
     private TableColumn<Customer, String> colCustomerName;
     @FXML
-    private TableColumn<Customer, Float> colCustomerPhone;
+    private TableColumn<Customer, String> colCustomerPhone;
     @FXML
-    private TableColumn<Customer, Float> colCustomerDob;
+    private TableColumn<Customer, String> colCustomerDob;
     @FXML
-    private TableColumn<Customer, Float> colCustomerPoint;
+    private TableColumn<Customer, Integer> colCustomerPoint;
     @FXML
     private TableView<Customer> tvCustomer;
+    ConnectDB con;
+     Connection cn;
 
     /**
      * Initializes the controller class.
@@ -51,6 +53,9 @@ public class KhachhangController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        con = new ConnectDB();
+         cn = con.getConnect();
+         showProducts();
     }    
 
     @FXML
@@ -63,8 +68,7 @@ public class KhachhangController implements Initializable {
         //tao ds chua cac Product
         ObservableList<Customer> list = FXCollections.observableArrayList();
         //tao doi tuong
-        ConnectDB con = new ConnectDB();
-        Connection cn = con.getConnect();
+         list.clear();
         
         //viet cau lenh truy van
         String query = "SELECT * FROM Customer";
@@ -81,15 +85,15 @@ public class KhachhangController implements Initializable {
             {
                 String customerId = rs.getString("CustomerId");
                 String customerName = rs.getString("CustomerName");
-                float customerPhone = rs.getFloat("CustomerPhone");
-                float Dob = rs.getFloat("Dob");
-                float Point = rs.getFloat("Point");
+                String customerPhone = rs.getString("CustomerPhone");
+                String Dob = rs.getString("Dob");
+                int Point = rs.getInt("Point");
                 
                 
                 //tao doi tuong Customer
                 c = new Customer(customerId, customerName, customerPhone, Dob, Point);
                 //System.out.println(p);
-                
+                list.add(c);
                 
                 
             }
@@ -105,11 +109,11 @@ public class KhachhangController implements Initializable {
         ObservableList<Customer> cList = getCustomers();
         
         //show ds ra tableview
-        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colCustomerPhone.setCellValueFactory(new PropertyValueFactory<>("price"));
-        colCustomerDob.setCellValueFactory(new PropertyValueFactory<>("image"));
-        colCustomerPoint.setCellValueFactory(new PropertyValueFactory<>("image"));
+        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("CustomerId"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("CustomerName"));
+        colCustomerPhone.setCellValueFactory(new PropertyValueFactory<>("CustomerPhone"));
+        colCustomerDob.setCellValueFactory(new PropertyValueFactory<>("Dob"));
+        colCustomerPoint.setCellValueFactory(new PropertyValueFactory<>("Point"));
         
         tvCustomer.setItems(cList);
     }
@@ -118,9 +122,6 @@ public class KhachhangController implements Initializable {
     
     private void executeSQL(String query)
     {
-        ConnectDB con = new ConnectDB();
-        Connection cn = con.getConnect();
-        
         Statement st;
         try {
             st = cn.createStatement();
