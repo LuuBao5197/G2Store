@@ -10,16 +10,16 @@ package group2.g2store;
  */
 public class Suppiler {
     private Integer SuppilerCode;
-    private String  SuppilerName, email, address, phoneNumber;
+    private String  SuppilerName, address, email, phoneNumber;
 
     public Suppiler() {
     }
 
-    public Suppiler(Integer SuppilerCode, String SuppilerName, String email, String address, String phoneNumber) {
+    public Suppiler(Integer SuppilerCode, String SuppilerName, String address, String email, String phoneNumber) {
         this.SuppilerCode = SuppilerCode;
         this.SuppilerName = SuppilerName;
-        this.email = email;
         this.address = address;
+        this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
@@ -31,12 +31,14 @@ public class Suppiler {
         return SuppilerName;
     }
 
-    public String getEmail() {
-        return email;
-    }
+   
 
     public String getAddress() {
         return address;
+    } 
+    
+    public String getEmail() {
+        return email;
     }
 
     public String getPhoneNumber() {
@@ -51,12 +53,13 @@ public class Suppiler {
         this.SuppilerName = SuppilerName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    
     public void setAddress(String address) {
         this.address = address;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -65,8 +68,10 @@ public class Suppiler {
 
     @Override
     public String toString() {
-        return "Suppiler{" + "SuppilerCode=" + SuppilerCode + ", SuppilerName=" + SuppilerName + ", email=" + email + ", address=" + address + ", phoneNumber=" + phoneNumber + '}';
+        return "Suppiler{" + "SuppilerCode=" + SuppilerCode + ", SuppilerName=" + SuppilerName + ", address=" + address + ", email=" + email + ", phoneNumber=" + phoneNumber + '}';
     }
+
+   
 
     
     
