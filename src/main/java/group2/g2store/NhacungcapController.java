@@ -14,11 +14,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -45,6 +47,20 @@ public class NhacungcapController implements Initializable {
     private TableColumn<Suppiler, String> colSuppilerPhonnumber;
     ConnectDB con;
      Connection cn;
+    @FXML
+    private TextField tfSuppilerCode;
+    @FXML
+    private TextField tfSuppilerName;
+    @FXML
+    private TextField tfSuppilerAddress;
+    @FXML
+    private TextField tfSuppilerEmail;
+    @FXML
+    private TextField tfSuppilerPhone;
+    @FXML
+    private Button btSuppilerAdd;
+    @FXML
+    private Button btSuppilerUpdate;
 
     /**
      * Initializes the controller class.
@@ -112,8 +128,8 @@ public class NhacungcapController implements Initializable {
         //show ds ra tableview
         colSuppilerCode.setCellValueFactory(new PropertyValueFactory<>("SuppilerCode"));
         colSuppilerName.setCellValueFactory(new PropertyValueFactory<>("SuppilerName"));
-        colSuppilerAddress.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colSuppilerEmail.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colSuppilerAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colSuppilerEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colSuppilerPhonnumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         
         tvSuppiler.setItems(sList);
@@ -136,5 +152,82 @@ public class NhacungcapController implements Initializable {
             System.out.println("loi: " + ex.getMessage());
         }
     }
+    private void addSuppiler(ActionEvent event) {
+        //get gtri cua cua field
+        int SuppilerCode  = Integer.parseInt(tfSuppilerCode.getText());
+        String SuppilerName  = tfSuppilerName.getText();
+        String address  = tfSuppilerAddress.getText();
+        String email  = tfSuppilerEmail.getText();
+        String phoneNumber  = tfSuppilerPhone.getText();
+        
+        String sql = "INSERT INTO Suppiler "
+                + "VALUES('" + SuppilerCode + "'," +  "'" + SuppilerName + "'," + address + ",'" + email + " ,'" + phoneNumber + "')";
+        
+        //System.out.println(sql);
+        executeSQL(sql);
+
+    }
+
+    private void onSelectSuppiler(MouseEvent event) {
+        Suppiler s  = tvSuppiler.getSelectionModel().getSelectedItem();
+        
+        //xuat du lieu
+        tfSuppilerCode.setText("" + s.getSuppilerCode());
+        tfSuppilerName.setText(s.getSuppilerName());
+        tfSuppilerAddress.setText(""+ s.getAddress());
+        tfSuppilerEmail.setText(""+ s.getEmail());
+        tfSuppilerPhone.setText(s.getPhoneNumber());
+    }
+
+    private void updateSuppiler(ActionEvent event) {
+        //get gtri cua cua field
+        int SuppilerCode  = Integer.parseInt(tfSuppilerCode.getText());
+        String SuppilerName  = tfSuppilerName.getText();
+        String address  = tfSuppilerAddress.getText();
+        String email  = tfSuppilerEmail.getText();
+        String phoneNumber  = tfSuppilerPhone.getText();
+        
+        String sql = "UPDATE Suppiler SET "
+                + "name='" + SuppilerName + "',"
+                + "price=" + address + ","
+                + "email=" + email + ","
+                + "phoneNumber='" + phoneNumber + "'"
+                + "WHERE SuppilerCode='" + SuppilerCode + "'";
+        
+        //System.out.println(sql);
+        executeSQL(sql);
+        
+        //load lai du lieu
+        showSuppilers();
+    }
+
+    private void deleteSuppiler(ActionEvent event) {
+        //get gtri cua cua field
+        int SuppilerCode  = Integer.parseInt(tfSuppilerCode.getText());
+        String SuppilerName  = tfSuppilerName.getText();
+        String address  = tfSuppilerAddress.getText();
+        String email  = tfSuppilerEmail.getText();
+        String phoneNumber  = tfSuppilerPhone.getText();
+        
+        String sql = "DELETE FROM Suppiler  "
+                + "WHERE SuppilerCode='" + SuppilerCode + "'";
+        
+        //System.out.println(sql);
+        executeSQL(sql);
+        
+        //xoa du lieu
+        reset();
+        
+        //load lai du lieu
+        showSuppilers();
+    }
     
+    private void reset()
+    {
+        tfSuppilerCode.setText("");
+        tfSuppilerName.setText("");
+        tfSuppilerAddress.setText("");
+        tfSuppilerEmail.setText("");
+        tfSuppilerPhone.setText("");
+    }
 }
