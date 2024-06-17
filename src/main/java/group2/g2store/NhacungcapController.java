@@ -57,6 +57,16 @@ public class NhacungcapController implements Initializable {
     private TextField tfSuppilerEmail;
     @FXML
     private TextField tfSuppilerPhone;
+    @FXML
+    private TextField tfSuppilerCode1;
+    @FXML
+    private TextField tfSuppilerName1;
+    @FXML
+    private TextField tfSuppilerAddress1;
+    @FXML
+    private TextField tfSuppilerEmail1;
+    @FXML
+    private TextField tfSuppilerPhone1;
 
     /**
      * Initializes the controller class.
@@ -187,18 +197,17 @@ public class NhacungcapController implements Initializable {
     private void SuppilerAdd(ActionEvent event) {
         
         //get gtri cua cua field
-        int SuppilerCode  = Integer.parseInt(tfSuppilerCode.getText());
+//        int SuppilerCode  = Integer.parseInt(tfSuppilerCode.getText());
         String SuppilerName  = tfSuppilerName.getText();
         String address  = tfSuppilerAddress.getText();
         String email  = tfSuppilerEmail.getText();
         String phoneNumber  = tfSuppilerPhone.getText();
         
         String sql = "INSERT INTO Suppiler "
-                + "VALUES('" + SuppilerCode + "'," 
-                             +  "'" + SuppilerName + "'," 
-                             + address + ",'"
-                             + email + ",'" 
-                             + phoneNumber + "')";
+                + "VALUES('" + SuppilerName + "'," 
+                             +  "'" + address + "'," 
+                             + "'" + email + "'," 
+                             + "'" + phoneNumber + "')";
         
         //System.out.println(sql);
         executeSQL(sql);
@@ -207,9 +216,9 @@ public class NhacungcapController implements Initializable {
 
     
     
+    @FXML
     private void onSelectSuppiler(MouseEvent event) {
         Suppiler s  = tvSuppiler.getSelectionModel().getSelectedItem();
-        
         //xuat du lieu
         tfSuppilerCode.setText("" + s.getSuppilerCode());
         tfSuppilerName.setText(s.getSuppilerName());
