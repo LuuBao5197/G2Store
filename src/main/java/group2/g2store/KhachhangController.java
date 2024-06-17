@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -46,6 +48,12 @@ public class KhachhangController implements Initializable {
     private TableView<Customer> tvCustomer;
     ConnectDB con;
      Connection cn;
+    @FXML
+    private AnchorPane viewCustomer;
+    @FXML
+    private AnchorPane formAddCustomer;
+    @FXML
+    private Button btnAddCustomer;
 
     /**
      * Initializes the controller class.
@@ -56,6 +64,7 @@ public class KhachhangController implements Initializable {
         con = new ConnectDB();
          cn = con.getConnect();
          showCustomers();
+        
     }    
 
     @FXML
@@ -134,5 +143,11 @@ public class KhachhangController implements Initializable {
         } catch (SQLException ex) {
             System.out.println("loi: " + ex.getMessage());
         }
+    }
+
+    @FXML
+    private void showAddCustomer(ActionEvent event) {
+        formAddCustomer.setVisible(true);
+        viewCustomer.setVisible(false);
     }
 }
